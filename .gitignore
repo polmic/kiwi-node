@@ -1,3 +1,8 @@
+### Custom
+
+# Semantic-ui, see readme for install
+public/semantic
+
 # Logs
 logs
 *.log
