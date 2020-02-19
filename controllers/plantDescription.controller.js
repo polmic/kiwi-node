@@ -12,15 +12,31 @@ class PlantDescriptionController {
     })
   }
 
-  static async getRandomDescriptions(req, res, next) {
+  static async getRandomDescriptions(rand, limit = 3) {
+    return PlantDescription.find({}).limit(limit).skip(rand)
+  }
+
+  
+/*   static async getRandomDescriptions(limit = 3) {
+    PlantDescription.count().exec((err, count) => {
+      const rand = Math.floor(Math.random() * count)
+      return PlantDescription.find({}).limit(limit).skip(rand)
+    })
+  } */
+
+  
+/*   static async getRandomDescriptions(req, res, next) {
+    console.log('getRandomDescriptions');
     PlantDescription.find({}, (error, data) => {
       if (error) {
+        console.log(data);
         return next(error)
       } else {
+        console.log(data)
         res.json(data)
       }
     }).limit(10)
-  }
+  } */
 
   static async searchDescriptions(req, res, next) {
   console.log(req.body);
@@ -41,6 +57,7 @@ class PlantDescriptionController {
         res.json(data)
       }
     })
+
   }
 
   static async getDescriptionById(req, res, next) {

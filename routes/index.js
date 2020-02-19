@@ -1,9 +1,16 @@
 const PlantDescriptionRouter = require('./plantDescription.route')
+const PlantDescriptionController = require('../controllers/plantDescription.controller')
 
 module.exports = function (app) {
 
-    app.get('/', (req, res) => {
-        res.render('../views/pages/index', { query: '' })
+    app.get('/', async (req, res) => {
+        try {
+            const rand = Math.floor(Math.random() * 1853)
+            let descriptions = await PlantDescriptionController.getRandomDescriptions(rand);
+            res.render('../views/pages/index', { query: '', descriptions});
+          } catch (e) {
+            next(e);
+          }
     })
 
     //app.post('/search', plantDescriptionRoute.post('/search'))
