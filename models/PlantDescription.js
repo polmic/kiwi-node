@@ -3,78 +3,30 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema
 let PlantDescription = new Schema({
-    category: {
-        type: String
-    },
-    commonName: {
-        type: String
-    },
-    diseasesPests: {
-        type: String
-    },
-    exposure: {
-        type: String
-    },
-    family: {
-        type: String
-    },
-    flowering: {
-        type: String
-    },
-    flowersColor: {
-        type: String
-    },
-    foliageType: {
-        type: String
-    },
-    height: {
-        type: String
-    },
-    latinName: {
-        type: String
-    },
-    multiplicationMethods: {
-        type: String
-    },
-    origin: {
-        type: String
-    },
-    plantType: {
-        type: String
-    },
-    plantationRepotting: {
-        type: String
-    },
-    relatedSpecies: {
-        type: String
-    },
-    rusticity: {
-        type: String
-    },
-    soilAcidity: {
-        type: String
-    },
-    soilHumidity: {
-        type: String
-    },
-    soilType: {
-        type: String
-    },
-    synonyms: {
-        type: String
-    },
-    trimming: {
-        type: String
-    },
-    toxicity: {
-        type: String
-    },
-    plantUsage: {
-        type: String
-    },
-    vegetationType: {
-        type: String
-    }
+    category: String,
+    commonName: String,
+    diseasesPests: String,
+    exposure: String,
+    family: String,
+    flowering: String,
+    flowersColor: String,
+    foliageType: String,
+    height: String,
+    latinName: String,
+    multiplicationMethods: String,
+    origin: String,
+    plantType: String,
+    plantationRepotting: String,
+    relatedSpecies: String,
+    rusticity: String,
+    soilAcidity: String,
+    soilHumidity: String,
+    soilType: String,
+    synonyms: String,
+    trimming: String,
+    toxicity: String,
+    plantUsage: String,
+    vegetationType: String
 }, {
   collection: 'plant_description'
 })

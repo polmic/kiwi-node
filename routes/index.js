@@ -1,4 +1,5 @@
 const PlantDescriptionRouter = require('./plantDescription.route')
+const PlantThumbnailRouter = require('./plantThumbnail.route')
 const PlantDescriptionController = require('../controllers/plantDescription.controller')
 
 module.exports = function (app) {
@@ -16,6 +17,7 @@ module.exports = function (app) {
     //app.post('/search', plantDescriptionRoute.post('/search'))
 
     app.use('/plant-description', PlantDescriptionRouter)
+    app.use('/plant-thumbnail', PlantThumbnailRouter)
 
     // Find 404 and hand over to error handler
     app.use((req, res, next) => {
