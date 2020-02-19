@@ -4,5 +4,5 @@
 <br/><br/><br/>
 ## Installing [Semantic UI](https://semantic-ui.com/)
 * Manually: Download semantic ui zip file, then extract its content into /public/semantic folder
-* Via script: run /utils/init-semantic.py
+* Via script: cd into /utils then run python init-semantic.py
 
