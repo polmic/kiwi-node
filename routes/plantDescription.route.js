@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const PlantDescriptionRoute = express.Router();
+const PlantDescriptionRouter = express.Router();
 const PlantDescriptionController = require('../controllers/plantDescription.controller');
 
-PlantDescriptionRoute.route('/').get(PlantDescriptionController.getAllDescriptions);
-PlantDescriptionRoute.route('/add').post(PlantDescriptionController.addDescription);
-PlantDescriptionRoute.route('/rand').get(PlantDescriptionController.getRandomDescriptions);
-PlantDescriptionRoute.route('/:id').get(PlantDescriptionController.getDescriptionById);
+PlantDescriptionRouter.route('/').get(PlantDescriptionController.getAllDescriptions);
+PlantDescriptionRouter.route('/add').post(PlantDescriptionController.addDescription);
+PlantDescriptionRouter.route('/rand').get(PlantDescriptionController.getRandomDescriptions);
+PlantDescriptionRouter.route('/search').post(PlantDescriptionController.searchDescriptions);
+PlantDescriptionRouter.route('/:id').get(PlantDescriptionController.getDescriptionById);
 
-module.exports = PlantDescriptionRoute;
+module.exports = PlantDescriptionRouter;

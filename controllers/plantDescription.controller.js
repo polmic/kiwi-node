@@ -12,17 +12,18 @@ class PlantDescriptionController {
     })
   }
 
-  static async getDescriptionById(req, res, next) {
-    PlantDescription.findById(req.params.id, (error, data) => {
+  static async getRandomDescriptions(req, res, next) {
+    PlantDescription.find({}, (error, data) => {
       if (error) {
         return next(error)
       } else {
         res.json(data)
       }
-    })
+    }).limit(10)
   }
 
-  static async getRandomDescriptions(req, res, next) {
+  static async searchDescriptions(req, res, next) {
+  console.log(req.body);
     PlantDescription.find({}, (error, data) => {
       if (error) {
         return next(error)
@@ -34,6 +35,16 @@ class PlantDescriptionController {
 
   static async addDescription(req, res, next) {
     PlantDescription.create(req.body, (error, data) => {
+      if (error) {
+        return next(error)
+      } else {
+        res.json(data)
+      }
+    })
+  }
+
+  static async getDescriptionById(req, res, next) {
+    PlantDescription.findById(req.params.id, (error, data) => {
       if (error) {
         return next(error)
       } else {
