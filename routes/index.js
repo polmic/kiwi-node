@@ -1,6 +1,7 @@
 const PlantDescriptionRouter = require('./plantDescription.route')
 const PlantThumbnailRouter = require('./plantThumbnail.route')
 const PlantDescriptionController = require('../controllers/plantDescription.controller')
+const PlantThumbnailController = require('../controllers/plantThumbnail.controller');
 
 module.exports = function (app) {
 
@@ -8,6 +9,11 @@ module.exports = function (app) {
         try {
             const rand = Math.floor(Math.random() * 1853)
             let descriptions = await PlantDescriptionController.getRandomDescriptions(rand);
+            for (let i = 0; i < descriptions.length; i++) {
+                const descriptionId = descriptions[i].id;
+                const thumbnail = await PlantThumbnailController.getThumbnailByDescId(descriptionId)
+                descriptions[i].thumbnail = thumbnail[0] ? Buffer.from(thumbnail[0].binary, 'binary') : []
+            }
             res.render('../views/pages/index', { query: '', descriptions});
           } catch (e) {
             next(e);

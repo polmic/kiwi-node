@@ -9,6 +9,15 @@ require('./connect_database')
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+var options = {
+  inflate: true,
+  limit: '5mb',
+  type: 'application/octet-stream'
+};
+app.use(bodyParser.raw(options));
+
+
 app.use(cors())
 
 app.set('view engine', 'ejs')

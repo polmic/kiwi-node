@@ -7,7 +7,7 @@
     }
 </style>
 
-<div class="ui fluid card">
+<div class="ui fluid blue card">
     <div class="content">
         <div class="right floated meta">
             <button class="like-icon-btn circular ui icon button">
@@ -18,7 +18,7 @@
         <%= description.commonName %>
     </div>
     <div class="image">
-        <img  src="/assets/images/no_thumbnail.png">
+        <img src="data:image/png;base64,<%= description.thumbnail %>">
     </div>
     <div class="content">
         <i class="sitemap icon green"></i>
