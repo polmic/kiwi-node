@@ -5,5 +5,7 @@ const PlantThumbnailController = require('../controllers/plantThumbnail.controll
 
 PlantThumbnailRouter.route('/:id').post(PlantThumbnailController.addThumbnail);
 PlantThumbnailRouter.route('/:id').get(PlantThumbnailController.getThumbnailByDescId);
+PlantThumbnailRouter.route('/:id').delete(PlantThumbnailController.removeThumbnail);
+PlantThumbnailRouter.route('/has-thumbnail/:id').get(PlantThumbnailController.descriptionHasThumbnails);
 
 module.exports = PlantThumbnailRouter;

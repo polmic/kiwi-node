@@ -7,10 +7,11 @@
     }
 </style>
 
-<div class="ui fluid blue card">
+
+<div class="random-card ui fluid blue card">
     <div class="content">
         <div class="right floated meta">
-            <button class="like-icon-btn circular ui icon button">
+            <button onclick="openModal('<%= description.id %>')" class="like-icon-btn circular ui icon button">
                 <i class="heart outline icon"></i>
               </button>
         </div>
@@ -18,10 +19,16 @@
         <%= description.commonName %>
     </div>
     <div class="image">
-        <img src="data:image/png;base64,<%= description.thumbnail %>">
+        <%if (description.thumbnail != '') { %>
+            <img src="data:image/png;base64,<%= description.thumbnail %>">
+        <% }else { %>
+            <img src="/assets/images/no_thumbnail.png">
+        <% }%>
     </div>
     <div class="content">
         <i class="sitemap icon green"></i>
         <%= description.plantType %>
     </div>
 </div>
+
+

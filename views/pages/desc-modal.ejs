@@ -1,0 +1,69 @@
+<div class="ui modal" id="modal-full-<%= description.id %>">
+    <i class="close icon"></i>
+    <div class="header">
+        <%= description.commonName %>
+    </div>
+    <div class="image content">
+      <div class="ui medium image">
+            <%if (description.thumbnail != '') { %>
+                <img src="data:image/png;base64,<%= description.thumbnail %>">
+            <% }else { %>
+                <img src="/assets/images/no_thumbnail.png">
+            <% }%>
+      </div>
+      <div class="description">
+        <div class="ui header">Description_title</div>
+        <p><span class="title">latinName : </span><%= description.latinName %></p>
+        <p><span class="title">synonyms : </span><%= description.synonyms %></p>
+        <p><span class="title">family : </span><%= description.family %></p>
+        <%if (description.relatedSpecies != '') { %>
+            <p><span class="title">relatedSpecies : </span><%= description.relatedSpecies %></p>
+        <% }%>
+        <%if (description.vegetationType != '') { %>
+            <p><span class="title">vegetationType : </span><%= description.vegetationType %></p>
+        <% }%>
+        <%if (description.exposure != '') { %>
+            <p><span class="title">Exposure : </span><%= description.exposure %></p>
+        <% }%>
+        <%if (description.foliageType != '') { %>
+            <p><span class="title">foliageType : </span><%= description.foliageType %></p>
+        <% }%>
+        <%if (description.flowering != '') { %>
+            <p><span class="title">flowering : </span><%= description.flowering %></p>
+        <% }%>
+        <%if (description.flowersColor != '') { %>
+            <p><span class="title">flowersColor : </span><%= description.flowersColor %></p>
+        <% }%>
+        <%if (description.rusticity != '') { %>
+            <p><span class="title">rusticity : </span><%= description.rusticity %></p>
+        <% }%>
+        <%if (description.soilType != '') { %>
+            <p><span class="title">soilType : </span><%= description.soilType %></p>
+        <% }%>
+        <%if (description.soilAcidity != '') { %>
+            <p><span class="title">soilAcidity : </span><%= description.soilAcidity %></p>
+        <% }%>
+        <%if (description.soilHumidity != '') { %>
+            <p><span class="title">soilHumidity : </span><%= description.soilHumidity %></p>
+        <% }%>
+        <%if (description.plantationRepotting != '') { %>
+            <p><span class="title">plantationRepotting : </span><%= description.plantationRepotting %></p>
+        <% }%>
+        <%if (description.multiplicationMethods != '') { %>
+            <p><span class="title">multiplicationMethods : </span><%= description.multiplicationMethods %></p>
+        <% }%>
+        <%if (description.diseasesPests != '') { %>
+            <p><span class="title">diseasesPests : </span><%= description.diseasesPests %></p>
+        <% }%>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui positive right labeled icon button">
+        Add to my plants
+        <i class="checkmark icon"></i>
+      </div>
+      <div class="ui blue deny button">
+        Nope
+      </div>
+    </div>
+</div>

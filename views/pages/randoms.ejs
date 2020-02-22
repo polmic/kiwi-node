@@ -9,10 +9,17 @@
     Randoms
 </h2>
 
+<script>
+    function openModal(id){
+        $('#modal-full-' + id).modal('show');
+    }
+</script>
+
 <div id="randoms-container" class="ui three column grid">
     <% for(var i=0; i < descriptions.length; i++) { %>
         <div class="column">
             <%- include('desc-card', {description: descriptions[i]}); %>
+            <%- include('desc-modal', {description: descriptions[i]}); %>
         </div>
     <% } %>
 </div>
