@@ -1,0 +1,34 @@
+<style>
+    .like-icon-btn {
+        background: transparent !important;
+    }
+    .like-icon-btn:hover {
+        color: rgb(233, 69, 96) !important;
+    }
+</style>
+
+
+<div class="random-card ui fluid blue card">
+    <div class="content">
+        <div class="right floated meta">
+            <button onclick="openModal('<%= description.id %>')" class="like-icon-btn circular ui icon button">
+                <i class="heart outline icon"></i>
+              </button>
+        </div>
+        <img class="ui avatar image" src="/assets/images/no_thumbnail.png">
+        <%= description.commonName %>
+    </div>
+    <div class="image">
+        <%if (description.thumbnail != '') { %>
+            <img src="data:image/png;base64,<%= description.thumbnail %>">
+        <% }else { %>
+            <img src="/assets/images/no_thumbnail.png">
+        <% }%>
+    </div>
+    <div class="content">
+        <i class="sitemap icon green"></i>
+        <%= description.plantType %>
+    </div>
+</div>
+
+

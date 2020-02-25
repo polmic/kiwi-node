@@ -12,11 +12,15 @@ module.exports = function (app) {
             for (let i = 0; i < descriptions.length; i++) {
                 const descriptionId = descriptions[i].id;
                 const thumbnail = await PlantThumbnailController.getThumbnailByDescId(descriptionId)
-                descriptions[i].thumbnail = thumbnail[0] ? Buffer.from(thumbnail[0].binary, 'binary') : []
+                if (thumbnail && thumbnail.binary) {
+                    descriptions[i].thumbnail = Buffer.from(thumbnail.binary, 'binary')
+                } else {
+                    descriptions[i].thumbnail = ''
+                }
             }
             res.render('../views/pages/index', { query: '', descriptions});
           } catch (e) {
-            next(e);
+            console.log(e);
           }
     })
 

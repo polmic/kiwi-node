@@ -1,6 +1,6 @@
 <%- include('header') -%>
 
-<form action="/search" method="POST" class="ui form">
+<!-- <form action="/search" method="POST" class="ui form">
     <div class="field">
         <label for="search">Search</label>
         <input type="text" placeholder="Search.." name="search" value="<%= query %>">
@@ -8,8 +8,8 @@
     <button type="submit" class="ui blue labeled submit icon button">
         <i class="icon search"></i>Go
     </button>
-</form>
+</form> -->
 
-<%- include('randoms', {descriptions: descriptions}); %>
+<%- include('randoms/randoms', {descriptions: descriptions}); %>
 
 <%- include('footer') -%>

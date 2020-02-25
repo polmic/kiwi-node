@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let PlantThumbnail = new Schema({
-    descriptionId: String,
+    descriptionId: Schema.Types.ObjectId,
     binary: Buffer
 }, {
   collection: 'plant_thumbnail'
