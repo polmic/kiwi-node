@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-let PlantThumbnail = require('../models/PlantThumbnail');
+const PlantThumbnailService = require('../services/plantThumbnail.service');
 
 class PlantThumbnailController {
 
@@ -8,48 +8,41 @@ class PlantThumbnailController {
     if (!binary) {
       res.status(400).json({})
     }
-    PlantThumbnail.create({descriptionId: new mongoose.mongo.ObjectId(req.params.id), binary: req.body}, (error, data) => {
-      if (error) {
-        console.log(error)
-      } else {
-        res.status(201).json({})
-      }
-    })
+    const thumbnail = {
+      descriptionId: new mongoose.mongo.ObjectId(req.params.id), 
+      binary: req.body
+    }
+    PlantThumbnailService.add(thumbnail)
+    .then(res.status(201).json({/*NEW_THUMBNAIL_ID*/}))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    });
   }
 
-  static async getThumbnailByDescId(descriptionId) {
-    return PlantThumbnail.findOne({descriptionId: new mongoose.mongo.ObjectId(descriptionId)})
+  static async getThumbnailByDescId(req, res, next) {
+    PlantThumbnailService.findByDescId(new mongoose.mongo.ObjectId(descriptionId))
+    .then(data => res.json(data))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    });
   }
   
-/*   static async getThumbnailByDescId(req, res, next) {
-    PlantThumbnail.find({descriptionId: req.params.id}, (error, data) => {
-      if (error) {
-        return next(error)
-      } else {
-        const result = data[0] ? data[0].binary : []
-        console.log(result)
-        res.end(Buffer.from(result, 'binary'))
-      }
-    })
-  } */
-
-
   static async descriptionHasThumbnails(req, res, next) {
-    const start = new Date()
-    PlantThumbnail.count({descriptionId: new mongoose.mongo.ObjectId(req.params.id)}, (error, data) => {
-      if (error) {
-        return next(error)
-      } else {
-        const result = data !== 0;
-        res.json(result)
-      }
-      const end = new Date() - start
-      console.info('Execution time: %dms', end)
+    PlantThumbnailService.countByDescId(new mongoose.mongo.ObjectId(req.params.id))
+    .then(data => {
+      const result = data !== 0;
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+      return next(error)
     })
   }
 
   static async removeThumbnail(thumbnailId) {
-    return PlantThumbnail.remove({id:  new mongoose.mongo.ObjectId(thumbnailId)})
+    return PlantThumbnailService.remove(new mongoose.mongo.ObjectId(thumbnailId))
   }
  
 }

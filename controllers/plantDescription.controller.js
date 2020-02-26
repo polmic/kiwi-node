@@ -1,73 +1,76 @@
-let PlantDescription = require('../models/PlantDescription');
+const PlantDescriptionService = require('../services/plantDescription.service');
+const PlantThumbnailService = require('../services/plantThumbnail.service');
 
 class PlantDescriptionController {
 
+  static async getFullDescriptions() {
+      const rand = Math.floor(Math.random() * 1853)
+      let descriptions = await PlantDescriptionService.findRandom(rand);
+      for (let i = 0; i < descriptions.length; i++) {
+          const descriptionId = descriptions[i].id;
+          await PlantThumbnailService.findByDescId(descriptionId).then(thumbnail => this._setThumbnail(thumbnail, descriptions[i]))
+      }
+      return descriptions
+  }
+
   static async getAllDescriptions(req, res, next) {
-    PlantDescription.find((error, data) => {
-      if (error) {
-        return next(error)
-      } else {
-        res.json(data)
-      }
-    })
-  }
-
-  static async getRandomDescriptions(rand, limit = 3) {
-    return PlantDescription.find({}).limit(limit).skip(rand)
-  }
-
-  
-/*   static async getRandomDescriptions(limit = 3) {
-    PlantDescription.count().exec((err, count) => {
-      const rand = Math.floor(Math.random() * count)
-      return PlantDescription.find({}).limit(limit).skip(rand)
-    })
-  } */
-
-  
-/*   static async getRandomDescriptions(req, res, next) {
-    console.log('getRandomDescriptions');
-    PlantDescription.find({}, (error, data) => {
-      if (error) {
-        console.log(data);
-        return next(error)
-      } else {
-        console.log(data)
-        res.json(data)
-      }
-    }).limit(10)
-  } */
-
-  static async searchDescriptions(req, res, next) {
-  console.log(req.body);
-    PlantDescription.find({}, (error, data) => {
-      if (error) {
-        return next(error)
-      } else {
-        res.json(data)
-      }
-    }).limit(10)
-  }
-
-  static async addDescription(req, res, next) {
-    PlantDescription.create(req.body, (error, data) => {
-      if (error) {
-        return next(error)
-      } else {
-        res.json(data)
-      }
-    })
-
+    PlantDescriptionService.findAll()
+    .then(data => res.json(data))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    });
   }
 
   static async getDescriptionById(req, res, next) {
-    PlantDescription.findById(req.params.id, (error, data) => {
-      if (error) {
-        return next(error)
-      } else {
-        res.json(data)
-      }
-    })
+    PlantDescriptionService.findById(req.params.id)
+    .then(data => res.json(data))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    });
+  }
+  
+  static async getRandomDescriptions(req, res, next) {
+    const rand = Math.floor(Math.random() * 1853)
+    PlantDescriptionService.findRandom(rand)
+    .then(data => res.json(data))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    });
+  }
+
+  static async searchDescriptions(req, res, next) {
+    PlantDescriptionService.search(req.body)
+    .then(data => res.json(data))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    });
+  }
+
+  static async addDescription(req, res, next) {
+    PlantDescriptionService.add(req.body)
+    .then(data => res.json(data))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    });
+  }
+
+  /* * * * * * * * * * *
+      
+  Private Functions
+
+  * * * * * * * * * * */
+
+  static _setThumbnail(thumbnail, description) {
+    if (thumbnail && thumbnail.binary) {
+      description.thumbnail = Buffer.from(thumbnail.binary, 'binary')
+    } else {
+        description.thumbnail = ''
+    }
   }
 
 }

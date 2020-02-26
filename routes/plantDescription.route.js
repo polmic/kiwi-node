@@ -5,7 +5,7 @@ const PlantDescriptionController = require('../controllers/plantDescription.cont
 
 PlantDescriptionRouter.route('/').get(PlantDescriptionController.getAllDescriptions);
 PlantDescriptionRouter.route('/add').post(PlantDescriptionController.addDescription);
-PlantDescriptionRouter.route('/rand').get(PlantDescriptionController.getRandomDescriptions);
+//PlantDescriptionRouter.route('/rand').get(PlantDescriptionController.getRandomDescriptions);
 PlantDescriptionRouter.route('/search').post(PlantDescriptionController.searchDescriptions);
 PlantDescriptionRouter.route('/:id').get(PlantDescriptionController.getDescriptionById);
 

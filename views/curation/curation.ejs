@@ -1,0 +1,27 @@
+<style>
+    .like-icon-btn {
+        background: transparent !important;
+    }
+    .like-icon-btn:hover {
+        color: rgb(233, 69, 96) !important;
+    }
+</style>
+
+<div class="ui fluid blue card">
+    <div class="content">
+        <div class="right floated meta">
+            <button class="like-icon-btn circular ui icon button">
+                <i class="heart outline icon"></i>
+            </button>
+        </div>
+        <img class="ui avatar image" src="/assets/images/no_thumbnail.png">
+        <%= description.id %>
+    </div>
+    <div class="image">
+        <img src="data:image/png;base64,<%= description.thumbnail %>">
+    </div>
+    <div class="content">
+        <i class="sitemap icon green"></i>
+        <%= description.plantType %>
+    </div>
+</div>
