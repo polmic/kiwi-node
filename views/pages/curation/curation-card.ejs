@@ -1,34 +1,27 @@
 <style>
-    .like-icon-btn {
+    .curation-icon-btn {
         background: transparent !important;
     }
-    .like-icon-btn:hover {
+    .curation-icon-btn:hover {
         color: rgb(233, 69, 96) !important;
     }
 </style>
 
-
 <div class="random-card ui fluid blue card">
     <div class="content">
-        <div class="right floated meta">
-            <button onclick="openModal('<%= description.id %>')" class="like-icon-btn circular ui icon button">
-                <i class="heart outline icon"></i>
-              </button>
-        </div>
-        <img class="ui avatar image" src="/assets/images/no_thumbnail.png">
-        <%= description.commonName %>
+        <i class="search icon blue"></i>
+        <a href="https://www.google.com/search?tbm=isch&q=<%= uncurated.description.commonName %>" target="_blank">
+            <%= uncurated.description.commonName %>
+        </a>
     </div>
     <div class="image">
-        <%if (description.thumbnail != '') { %>
-            <img src="data:image/png;base64,<%= description.thumbnail %>">
-        <% }else { %>
-            <img src="/assets/images/no_thumbnail.png">
-        <% }%>
+        <img src="data:image/png;base64,<%= uncurated.thumbnail %>">
     </div>
-    <div class="content">
-        <i class="sitemap icon green"></i>
-        <%= description.plantType %>
+    <div class="content" style="text-align: center">
+        <div class="ui buttons">
+            <button class="ui inverted red button">Reject</button>
+            <div class="or"></div>
+            <button class="ui inverted green button">Accept</button>
+        </div>
     </div>
 </div>
-
-

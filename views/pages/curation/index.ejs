@@ -1,0 +1,11 @@
+<%- include('../header') -%>
+
+<div id="" class="ui three column grid">
+    <% for(var i=0; i < uncurated.length; i++) { %>
+        <div class="column">
+            <%- include('curation-card', {uncurated: uncurated[i]}); %>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../footer') -%>
