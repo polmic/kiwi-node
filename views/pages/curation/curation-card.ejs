@@ -5,27 +5,67 @@
     .curation-icon-btn:hover {
         color: rgb(233, 69, 96) !important;
     }
+
+
+
+
 </style>
+
+<script>
+    accept = (id) => {
+        $.ajax({
+            url : `/plant-thumbnail/accept/${id}`,
+            type : 'POST',
+            dataType: 'json',
+            cache: false,
+            success: showSuccess,
+            error: showError
+        });
+   }
+
+    reject = (id) => {
+        $.ajax({
+            url : `/plant-thumbnail/${id}`,
+            type : 'DELETE',
+            dataType: 'json',
+            cache: false,
+            success: showSuccess,
+            error: showError
+        });
+   }
+
+    showError = (resp) => {
+        console.log(resp)
+        var x = document.getElementById("error-toast");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+
+    showSuccess = (resp) => {
+        console.log(resp)
+        var x = document.getElementById("success-toast");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+
+    
+</script>
 
 <div class="random-card ui fluid blue card">
     <div class="content">
         <i class="search icon blue"></i>
         <a href="https://www.google.com/search?tbm=isch&q=<%= uncurated.description.commonName %>" target="_blank">
-            <%= uncurated.description.commonName %>
-        </a>
+            <%= uncurated.description.commonName %> <%= uncurated.id %>
+        </a> 
     </div>
     <div class="image">
         <img src="data:image/png;base64,<%= uncurated.thumbnail %>">
     </div>
     <div class="content" style="text-align: center">
         <div class="ui buttons">
-            <form action="/plant-thumbnail/<%= uncurated.id %>?_method=DELETE" method="POST">
-                <button class="ui inverted red button">Reject</button>
-            </form>
+                <button onclick="reject('<%= uncurated.id %>')" class="ui inverted red button">Reject</button>
             <div class="or"></div>
-            <form action="/plant-thumbnail/accept/<%= uncurated.id %>" method="POST">
-                <button class="ui inverted green button">Accept</button>
-            </form>
+                <button onclick="accept('<%= uncurated.id %>')" class="ui inverted green button">Accept</button>
         </div>
     </div>
 </div>

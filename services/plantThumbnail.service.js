@@ -23,10 +23,6 @@ class PlantThumbnailService {
     return PlantThumbnail.countDocuments({descriptionId: id})
   }
 
-  static async remove(id) {
-    return PlantThumbnail.remove({_id: id})
-  }
-
   static async getUncuratedThumbnails(resPerPage, page) {
     return PlantThumbnail.find({curated: {$exists: false}})
       .skip((resPerPage * page) - resPerPage)
@@ -38,7 +34,11 @@ class PlantThumbnailService {
   }
 
   static async acceptThumbnail(id) {
-    return PlantThumbnail.findOneAndUpdate({_id: id}, {$set: {curated: true}})
+    return PlantThumbnail.findOneAndUpdate({_id: id}, {$set: {curated: true}}, {new: true})
+  }
+  
+  static async remove(id) {
+    return PlantThumbnail.deleteOne({_id: id})
   }
 
 }
