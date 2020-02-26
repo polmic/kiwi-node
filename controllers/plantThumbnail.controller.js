@@ -41,8 +41,20 @@ class PlantThumbnailController {
     })
   }
 
-  static async removeThumbnail(thumbnailId) {
-    return PlantThumbnailService.remove(new mongoose.mongo.ObjectId(thumbnailId))
+  static async acceptThumbnail(req, res, next) {
+    const id = req.params.id
+    PlantThumbnailService.acceptThumbnail(new mongoose.mongo.ObjectId(id))
+    .then(data => res.json(data))
+    .catch(error => {
+      console.log(error)
+      return next(error)
+    })
+  }
+
+  static async removeThumbnail(req, res, next) {
+    const id = req.params.id
+    //TODO if no id specified
+    return PlantThumbnailService.remove(new mongoose.mongo.ObjectId(id))
   }
  
 }

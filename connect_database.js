@@ -12,5 +12,6 @@ mongoose.connect(dataBaseConfig.db, {
     console.log('Could not connected to database : ' + error)
   }
 )
+mongoose.set('debug', true)
 
 module.exports = mongoose

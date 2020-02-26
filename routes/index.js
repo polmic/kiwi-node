@@ -30,7 +30,7 @@ module.exports = function (app) {
             const descriptionId = thumbnails[i].descriptionId;
             const description = await PlantDescriptionService.findById(descriptionId)
             uncurated.push({
-                id: descriptionId,
+                id: thumbnails[i].id,
                 thumbnail: Buffer.from(thumbnails[i].binary, 'binary'),
                 description
             });

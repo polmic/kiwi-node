@@ -19,9 +19,14 @@
     </div>
     <div class="content" style="text-align: center">
         <div class="ui buttons">
-            <button class="ui inverted red button">Reject</button>
+            <form action="/plant-thumbnail/<%= uncurated.id %>?_method=DELETE" method="POST">
+                <button class="ui inverted red button">Reject</button>
+            </form>
             <div class="or"></div>
-            <button class="ui inverted green button">Accept</button>
+            <form action="/plant-thumbnail/accept/<%= uncurated.id %>" method="POST">
+                <button class="ui inverted green button">Accept</button>
+            </form>
         </div>
     </div>
 </div>
+
