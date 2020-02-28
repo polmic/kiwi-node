@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Kiwi</title>
-    <link rel="stylesheet" href="/assets/semantic/semantic.min.css">
-    <link rel="stylesheet" href="/assets/css/toast.css">
-    <style>
-        .main.container {
-            margin-top: 7em;
+  <title>Kiwi</title>
+  <link rel="stylesheet" href="/assets/semantic/semantic.min.css">
+  <link rel="stylesheet" href="/assets/css/toast.css">
+  <link rel="stylesheet" href="/assets/css/hamburger.css">
+  <link rel="stylesheet" href="/assets/css/nav.css">
+  <style>
+    body {
+      overflow-y: scroll;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="/assets/semantic/semantic.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#menu-toggle').click(function() {
+        $(this).toggleClass('open');
+        if ($(this).hasClass('open')) {
+          $(".menu").slideDown("slow");
+        } else {
+          $(".menu").slideUp("slow");
         }
-    </style>
-    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="/assets/semantic/semantic.min.js"></script>
+      });
+    });
+  </script>
 </head>
+
 <body>
 
-<div class="ui dxed inverted menu">
-    <a href="/" class="header item">Accueil</a>
-    <a href="/curation" class="header item">Curation</a>
-</div>
-<div class="ui main container">
+  <%- include('nav') -%>
+
+    <div class="ui main container">
