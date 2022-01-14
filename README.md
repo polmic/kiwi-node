@@ -1,8 +1,8 @@
 # Kiwi-node
 
-A CRUD NodeJS Api to try the framework.
+**A CRUD NodeJS Api to try the framework.**
 
-**NodeJs - ExpressJs (EJS) - Mongoose**
+*NodeJs - ExpressJs (EJS) - Mongoose*
 
 
 ## Installing [Semantic UI](https://semantic-ui.com/)
